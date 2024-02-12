@@ -41,7 +41,7 @@ init-backend: configure-s3 configure-ddb ## Inits backend configuration
 
 
 init-state-aws-vrsfactory: ## Inits "aws-vrsfactory" terraform state
-	@echo "Initializing AWS state ..."
+	@echo "Initializing 'AWS for vrs-factory' state ..."
 	@cd environments/aws/acc_vrs-factory && terraform init \
 	-reconfigure \
 	-backend-config="access_key=$(AWS_ACCESS_KEY_ID)" \
@@ -49,10 +49,10 @@ init-state-aws-vrsfactory: ## Inits "aws-vrsfactory" terraform state
 	-backend-config="key=state-aws-vrsfactory.tfstate"
 
 
-# init-state-cloudflare-vrsfactorydev: ## Inits "cloudflare-vrsfactorydev" terraform state
-# 	@echo "Initializing 'Cloudflare for vrs-factory.dev' state ..."
-# 	@cd environments/cloudflare/zone_vrs-factory.dev && terraform init \
-# 	-reconfigure \
-# 	-backend-config="access_key=$(AWS_ACCESS_KEY_ID)" \
-# 	-backend-config="secret_key=$(AWS_SECRET_ACCESS_KEY)" \
-# 	-backend-config="key=state-cloudflare-vrsfactorydev.tfstate"
+init-state-cloudflare-vrsfactorydev: ## Inits "cloudflare-vrsfactorydev" terraform state
+	@echo "Initializing 'Cloudflare for vrs-factory.dev' state ..."
+	@cd environments/cloudflare/zone_vrs-factory.dev && terraform init \
+	-reconfigure \
+	-backend-config="access_key=$(AWS_ACCESS_KEY_ID)" \
+	-backend-config="secret_key=$(AWS_SECRET_ACCESS_KEY)" \
+	-backend-config="key=state-cloudflare-vrsfactorydev.tfstate"
