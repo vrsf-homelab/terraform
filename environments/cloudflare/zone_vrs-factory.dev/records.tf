@@ -46,34 +46,17 @@ resource "cloudflare_record" "spf" {
 ###
 ##  G I T H U B  P A G E S
 ###
-resource "cloudflare_record" "github_a_1" {
-  zone_id = cloudflare_zone.default.id
-  name    = "@"
-  value   = "185.199.111.153"
-  type    = "A"
-  proxied = true
-}
+resource "cloudflare_record" "github" {
+  for_each = toset([
+    "185.199.111.153",
+    "185.199.110.153",
+    "185.199.109.153",
+    "185.199.108.153"
+  ])
 
-resource "cloudflare_record" "github_a_2" {
   zone_id = cloudflare_zone.default.id
   name    = "@"
-  value   = "185.199.110.153"
-  type    = "A"
-  proxied = true
-}
-
-resource "cloudflare_record" "github_a_3" {
-  zone_id = cloudflare_zone.default.id
-  name    = "@"
-  value   = "185.199.109.153"
-  type    = "A"
-  proxied = true
-}
-
-resource "cloudflare_record" "github_a_4" {
-  zone_id = cloudflare_zone.default.id
-  name    = "@"
-  value   = "185.199.108.153"
+  value   = each.key
   type    = "A"
   proxied = true
 }
@@ -93,5 +76,20 @@ resource "cloudflare_record" "google_site_verification" {
   name    = "@"
   value   = "google-site-verification=AhJx-YYifFwk8DOWEkG6mRYvCU8rNEZlsgSBlSLDpBg"
   type    = "TXT"
+  ttl     = 3600
+}
+
+resource "cloudflare_record" "k_to_aws" {
+  for_each = toset([
+    "ns-1147.awsdns-15.org",
+    "ns-159.awsdns-19.com",
+    "ns-961.awsdns-56.net",
+    "ns-1712.awsdns-22.co.uk"
+  ])
+
+  zone_id = cloudflare_zone.default.id
+  name    = "k"
+  type    = "NS"
+  value   = each.key
   ttl     = 3600
 }
