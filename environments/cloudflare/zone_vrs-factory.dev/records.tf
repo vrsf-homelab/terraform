@@ -81,10 +81,10 @@ resource "cloudflare_record" "google_site_verification" {
 
 resource "cloudflare_record" "k_to_aws" {
   for_each = toset([
-    "ns-1147.awsdns-15.org",
-    "ns-159.awsdns-19.com",
-    "ns-961.awsdns-56.net",
-    "ns-1712.awsdns-22.co.uk"
+    "ns-736.awsdns-28.net",
+    "ns-459.awsdns-57.com",
+    "ns-1094.awsdns-08.org",
+    "ns-1734.awsdns-24.co.uk",
   ])
 
   zone_id = cloudflare_zone.default.id
