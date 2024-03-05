@@ -56,3 +56,11 @@ init-state-cloudflare-vrsfactorydev: ## Inits "cloudflare-vrsfactorydev" terrafo
 	-backend-config="access_key=$(AWS_ACCESS_KEY_ID)" \
 	-backend-config="secret_key=$(AWS_SECRET_ACCESS_KEY)" \
 	-backend-config="key=state-cloudflare-vrsfactorydev.tfstate"
+
+init-state-cloudflare-vrsfactorypl: ## Inits "cloudflare-vrsfactorypl" terraform state
+	@echo "Initializing 'Cloudflare for vrs-factory.pl' state ..."
+	@cd environments/cloudflare/zone_vrs-factory.pl && terraform init \
+	-reconfigure \
+	-backend-config="access_key=$(AWS_ACCESS_KEY_ID)" \
+	-backend-config="secret_key=$(AWS_SECRET_ACCESS_KEY)" \
+	-backend-config="key=state-cloudflare-vrsfactorypl.tfstate"

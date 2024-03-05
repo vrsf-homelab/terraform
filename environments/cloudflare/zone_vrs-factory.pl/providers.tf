@@ -3,7 +3,7 @@ terraform {
 
   backend "s3" {
     bucket         = "vrs-factory-terraform"
-    key            = "state-cloudflare-${local.state_env}.tfstate"
+    key            = "state-cloudflare-vrsfactorypl.tfstate"
     region         = "eu-central-1"
     dynamodb_table = "vrs-factory-terraform"
 
@@ -16,7 +16,7 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 4"
+      version = "~> 4.25"
     }
   }
 }
