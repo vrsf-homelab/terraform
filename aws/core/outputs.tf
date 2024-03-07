@@ -7,8 +7,8 @@
 output "environments" {
   value = {
     pulselink = {
-      s3_bucket_name      = module.pulselink.s3_bucket_name
-      dynamodb_table_name = module.pulselink.dynamodb_table_name
+      s3_bucket_name      = module.pulselink_env.s3_bucket_name
+      dynamodb_table_name = module.pulselink_env.dynamodb_table_name
     }
   }
 }
