@@ -65,18 +65,15 @@ module "pulselink_iam_env_policy" {
           "iam:PutRolePolicy",
           "iam:ListRolePolicies",
           "iam:ListAttachedRolePolicies",
+          "iam:UpdateAssumeRolePolicy",
           "iam:TagOpenIDConnectProvider",
           "iam:GetOpenIDConnectProvider",
           "iam:ListInstanceProfilesForRole",
-          "iam:DeleteOpenIDConnectProvider"
+          "iam:DeleteOpenIDConnectProvider",
+          "iam:CreateOpenIDConnectProvider",
         ],
         "Resource" : "*"
-      },
-      {
-        "Effect" : "Allow",
-        "Action" : "iam:CreateOpenIDConnectProvider",
-        "Resource" : "*"
-      },
+      }
     ]
   })
 
