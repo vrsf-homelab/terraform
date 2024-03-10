@@ -71,7 +71,7 @@ resource "cloudflare_record" "k3s_cluster_giran" {
 resource "cloudflare_record" "k3s_prometheus" {
   zone_id = cloudflare_zone.default.id
   name    = "prom.k3s"
-  value   = "10.69.31.2"
+  value   = "10.69.31.1"
   type    = "A"
   proxied = false
 }
