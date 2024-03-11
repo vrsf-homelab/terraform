@@ -75,3 +75,23 @@ resource "cloudflare_record" "k3s_prometheus" {
   type    = "A"
   proxied = false
 }
+
+resource "cloudflare_record" "k3s_argocd_panel" {
+  zone_id = cloudflare_zone.default.id
+  name    = "argocd"
+  value   = "10.69.31.2"
+  type    = "A"
+  proxied = false
+}
+
+
+###
+##  S Y N O L O G Y
+###
+resource "cloudflare_record" "synology_panel" {
+  zone_id = cloudflare_zone.default.id
+  name    = "nas"
+  value   = "10.69.20.1"
+  type    = "A"
+  proxied = false
+}
