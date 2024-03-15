@@ -52,34 +52,18 @@ resource "cloudflare_record" "proxmox_panel" {
 ###
 ##  K U B E R N E T E S
 ###
-resource "cloudflare_record" "k8s_cluster_aden" {
+resource "cloudflare_record" "k8s_cluster" {
   zone_id = cloudflare_zone.default.id
   name    = "k8s"
-  value   = "10.69.35.10"
-  type    = "A"
-  proxied = false
-} 
-
-resource "cloudflare_record" "k8s_cluster_giran" {
-  zone_id = cloudflare_zone.default.id
-  name    = "k8s"
-  value   = "10.69.35.11"
+  value   = "10.69.35.1"
   type    = "A"
   proxied = false
 }
 
-resource "cloudflare_record" "k8s_cluster_dion" {
-  zone_id = cloudflare_zone.default.id
-  name    = "k8s"
-  value   = "10.69.35.12"
-  type    = "A"
-  proxied = false
-} 
-
 resource "cloudflare_record" "k8s_prometheus" {
  zone_id = cloudflare_zone.default.id
  name    = "prometheus.k8s"
- value   = "10.69.31.49"
+ value   = "10.69.36.99"
  type    = "A"
  proxied = false
 }
@@ -87,7 +71,7 @@ resource "cloudflare_record" "k8s_prometheus" {
 resource "cloudflare_record" "k8s_argocd_panel" {
   zone_id = cloudflare_zone.default.id
   name    = "argocd"
-  value   = "10.69.31.50"
+  value   = "10.69.36.100"
   type    = "A"
   proxied = false
 }
@@ -104,10 +88,10 @@ resource "cloudflare_record" "synology_panel" {
   proxied = false
 }
 
-# resource "cloudflare_record" "k8s_app_sample" {
-#   zone_id = cloudflare_zone.default.id
-#   name    = "sample"
-#   value   = "10.69.31.1"
-#   type    = "A"
-#   proxied = false
-# }
+resource "cloudflare_record" "synology_plex" {
+  zone_id = cloudflare_zone.default.id
+  name    = "plex"
+  value   = "10.69.20.1"
+  type    = "A"
+  proxied = false
+}
