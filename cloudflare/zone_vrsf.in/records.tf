@@ -9,12 +9,12 @@ resource "cloudflare_record" "www_cname_vrsfactorydev" {
   proxied = true
 }
 
-resource "cloudflare_record" "star_cname_vrsfactorydev" {
+resource "cloudflare_record" "www_cname_star_vrsfactorydev" {
   zone_id = cloudflare_zone.default.id
   name    = "*"
   value   = "vrs-factory.dev"
   type    = "CNAME"
-  proxied = true
+  proxied = false
 }
 
 
@@ -27,13 +27,6 @@ resource "cloudflare_record" "adguard_panel" {
   value   = "10.69.20.53"
   type    = "A"
   proxied = false
-}
-
-resource "cloudflare_record" "adguard_acme_challenge" {
-  zone_id = cloudflare_zone.default.id
-  name    = "_acme-challenge.adguard"
-  value   = "mWIP76zirXupe5h13jfYx5evKk3l_b9a6WKKygbee_c"
-  type    = "TXT"
 }
 
 
@@ -60,29 +53,13 @@ resource "cloudflare_record" "k8s_cluster" {
   proxied = false
 }
 
-resource "cloudflare_record" "k8s_prometheus" {
- zone_id = cloudflare_zone.default.id
- name    = "prometheus.k8s"
- value   = "10.69.36.99"
- type    = "A"
- proxied = false
-}
-
-resource "cloudflare_record" "k8s_argocd_panel" {
-  zone_id = cloudflare_zone.default.id
-  name    = "argocd"
-  value   = "10.69.36.100"
-  type    = "A"
-  proxied = false
-}
-
 
 ###
 ##  S Y N O L O G Y
 ###
 resource "cloudflare_record" "synology_panel" {
   zone_id = cloudflare_zone.default.id
-  name    = "nas"
+  name    = "storage"
   value   = "10.69.20.1"
   type    = "A"
   proxied = false
