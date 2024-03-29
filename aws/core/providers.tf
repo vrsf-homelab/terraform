@@ -3,7 +3,7 @@ terraform {
 
   backend "s3" {
     bucket         = "vrs-factory-terraform"
-    key            = "state-aws.tfstate"
+    key            = "state-aws-vrsfactory.tfstate"
     region         = "eu-central-1"
     dynamodb_table = "vrs-factory-terraform"
 
