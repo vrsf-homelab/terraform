@@ -12,8 +12,8 @@ resource "cloudflare_record" "www_cname_vrsfactorydev" {
 resource "cloudflare_record" "www_cname_star_vrsfactorydev" {
   zone_id = cloudflare_zone.default.id
   name    = "*"
-  value   = "vrs-factory.dev"
-  type    = "CNAME"
+  value   = "10.69.35.2"
+  type    = "A"
   proxied = false
 }
 
@@ -39,7 +39,7 @@ resource "cloudflare_record" "proxmox_panel" {
   value   = "10.69.30.10"
   type    = "A"
   proxied = false
-} 
+}
 
 
 ###
