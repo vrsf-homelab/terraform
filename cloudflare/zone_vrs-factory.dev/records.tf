@@ -78,18 +78,3 @@ resource "cloudflare_record" "google_site_verification" {
   type    = "TXT"
   ttl     = 3600
 }
-
-resource "cloudflare_record" "k_to_aws" {
-  for_each = toset([
-    "ns-236.awsdns-29.com",
-    "ns-926.awsdns-51.net",
-    "ns-1592.awsdns-07.co.uk",
-    "ns-1493.awsdns-58.org",
-  ])
-
-  zone_id = cloudflare_zone.default.id
-  name    = "k"
-  type    = "NS"
-  value   = each.key
-  ttl     = 3600
-}

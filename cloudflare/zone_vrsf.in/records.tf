@@ -53,6 +53,14 @@ resource "cloudflare_record" "k8s_cluster" {
   proxied = false
 }
 
+resource "cloudflare_record" "tunnel_argocd" {
+  zone_id = cloudflare_zone.default.id
+  name    = "acd"
+  value   = "1da6a66c-a33c-42fb-addb-9443fb26fe53.cfargotunnel.com"
+  type    = "CNAME"
+  proxied = true
+}
+
 
 ###
 ##  S Y N O L O G Y
