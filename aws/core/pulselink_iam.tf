@@ -53,26 +53,33 @@ module "pulselink_iam_env_policy" {
         ],
         "Resource" : "arn:aws:dynamodb:*:*:table/${module.pulselink_env.dynamodb_table_name}"
       },
+      # IAM
       {
         "Effect" : "Allow",
         "Action" : [
-          "iam:CreateRole",
-          "iam:TagRole",
-          "iam:GetRole",
-          "iam:DeleteRole",
-          "iam:GetRolePolicy",
-          "iam:DeleteRolePolicy",
-          "iam:PutRolePolicy",
-          "iam:ListRolePolicies",
-          "iam:ListAttachedRolePolicies",
-          "iam:UpdateAssumeRolePolicy",
-          "iam:TagOpenIDConnectProvider",
-          "iam:GetOpenIDConnectProvider",
+          "iam:*Role",
+          "iam:*RolePolicy",
+          "iam:*RolePolicies",
+          "iam:*AssumeRolePolicy",
+          "iam:*IDConnectProvider",
           "iam:ListInstanceProfilesForRole",
-          "iam:DeleteOpenIDConnectProvider",
-          "iam:CreateOpenIDConnectProvider",
         ],
         "Resource" : "*"
+      },
+      # KMS
+      {
+        "Effect": "Allow",
+        "Action": [
+          "kms:*",
+        ],
+        "Resource" : "*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "codeartifact:*"
+        ],
+        "Resource": "*"
       }
     ]
   })
