@@ -7,14 +7,7 @@ resource "cloudflare_record" "www_cname_vrsfactorydev" {
   value   = "vrs-factory.dev"
   type    = "CNAME"
   proxied = true
-}
-
-resource "cloudflare_record" "www_cname_star_vrsfactorydev" {
-  zone_id = cloudflare_zone.default.id
-  name    = "*"
-  value   = "10.69.35.2"
-  type    = "A"
-  proxied = false
+  comment = local.comment
 }
 
 
@@ -27,6 +20,7 @@ resource "cloudflare_record" "adguard_panel" {
   value   = "10.69.20.53"
   type    = "A"
   proxied = false
+  comment = local.comment
 }
 
 
@@ -39,6 +33,7 @@ resource "cloudflare_record" "proxmox_panel" {
   value   = "10.69.30.10"
   type    = "A"
   proxied = false
+  comment = local.comment
 }
 
 
@@ -48,17 +43,19 @@ resource "cloudflare_record" "proxmox_panel" {
 resource "cloudflare_record" "k8s_cluster" {
   zone_id = cloudflare_zone.default.id
   name    = "k8s"
-  value   = "10.69.35.1"
+  value   = "10.69.35.10"
   type    = "A"
   proxied = false
+  comment = local.comment
 }
 
-resource "cloudflare_record" "tunnel_argocd" {
+resource "cloudflare_record" "k8s_cluster_workers" {
   zone_id = cloudflare_zone.default.id
-  name    = "acd"
-  value   = "1da6a66c-a33c-42fb-addb-9443fb26fe53.cfargotunnel.com"
-  type    = "CNAME"
-  proxied = true
+  name    = "*"
+  value   = "10.69.35.11"
+  type    = "A"
+  proxied = false
+  comment = local.comment
 }
 
 
@@ -71,6 +68,7 @@ resource "cloudflare_record" "synology_panel" {
   value   = "10.69.20.1"
   type    = "A"
   proxied = false
+  comment = local.comment
 }
 
 resource "cloudflare_record" "synology_plex" {
@@ -79,4 +77,5 @@ resource "cloudflare_record" "synology_plex" {
   value   = "10.69.20.1"
   type    = "A"
   proxied = false
+  comment = local.comment
 }
