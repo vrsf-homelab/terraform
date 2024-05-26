@@ -7,6 +7,7 @@ resource "cloudflare_record" "www_cname_base" {
   value   = "vrs-factory.dev"
   type    = "CNAME"
   proxied = true
+  comment = local.comment
 }
 
 
@@ -19,6 +20,7 @@ resource "cloudflare_record" "domain_mx" {
   value    = "mail19.mydevil.net"
   type     = "MX"
   priority = 10
+  comment  = local.comment
 }
 
 resource "cloudflare_record" "devil_domainkey" {
@@ -26,6 +28,7 @@ resource "cloudflare_record" "devil_domainkey" {
   name    = "devil._domainkey"
   value   = "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDO98ru3YHh3aEjpSIDDOEc3MIQnBDwLwJLPoxauKFhIHrTnaze4QPYJBlblUvRktfwdxOTbNpCS8putUYsWvozh2uQFIbMh1VRL1cBUPDBB7LHvdDi7w299WDGEhoqH0+qil8rLs1CNhwMhDJRJuvk5K4iZ5RQwcFZeQsMfECc5wIDAQAB;"
   type    = "TXT"
+  comment = local.comment
 }
 
 resource "cloudflare_record" "_dmarc" {
@@ -33,6 +36,7 @@ resource "cloudflare_record" "_dmarc" {
   name    = "_dmarc"
   value   = "v=DMARC1; p=none; rua=mailto:5cd13401e34a48b3a9c0a348a2ed01e2@dmarc-reports.cloudflare.net"
   type    = "TXT"
+  comment = local.comment
 }
 
 resource "cloudflare_record" "spf" {
@@ -40,6 +44,7 @@ resource "cloudflare_record" "spf" {
   name    = "@"
   value   = "v=spf1 mx a include:mail19.mydevil.net -all"
   type    = "TXT"
+  comment = local.comment
 }
 
 
@@ -59,22 +64,33 @@ resource "cloudflare_record" "github" {
   value   = each.key
   type    = "A"
   proxied = true
+  comment = local.comment
+}
+
+resource "cloudflare_record" "github_helm" {
+  for_each = toset([
+    "185.199.111.153",
+    "185.199.110.153",
+    "185.199.109.153",
+    "185.199.108.153"
+  ])
+
+  zone_id = cloudflare_zone.default.id
+  name    = "helm"
+  value   = each.key
+  type    = "A"
+  proxied = true
+  comment = local.comment
 }
 
 ###
 ##  V E R I F I C A T I O N
 ###
-resource "cloudflare_record" "_github_pages_challenge_vertisan" {
-  zone_id = cloudflare_zone.default.id
-  name    = "_github-pages-challenge-vertisan"
-  value   = "b44fe8be9e20856029edef167245b9"
-  type    = "TXT"
-}
-
 resource "cloudflare_record" "google_site_verification" {
   zone_id = cloudflare_zone.default.id
   name    = "@"
   value   = "google-site-verification=AhJx-YYifFwk8DOWEkG6mRYvCU8rNEZlsgSBlSLDpBg"
   type    = "TXT"
   ttl     = 3600
+  comment = local.comment
 }
