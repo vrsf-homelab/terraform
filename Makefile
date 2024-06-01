@@ -38,3 +38,12 @@ init-state-cloudflare-vrsfin: ## Inits "cloudflare-vrsfin" terraform state
 	-backend-config="access_key=$(AWS_ACCESS_KEY_ID)" \
 	-backend-config="secret_key=$(AWS_SECRET_ACCESS_KEY)" \
 	-backend-config="key=state-cloudflare-vrsfin.tfstate"
+
+
+init-state-proxmox: ## Inits "proxmox" terraform state
+	@echo "Initializing 'Homelab Proxmox' state ..."
+	@cd proxmox && terraform init \
+	-reconfigure \
+	-backend-config="access_key=$(AWS_ACCESS_KEY_ID)" \
+	-backend-config="secret_key=$(AWS_SECRET_ACCESS_KEY)" \
+	-backend-config="key=state-proxmox.tfstate"
