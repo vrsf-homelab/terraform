@@ -16,7 +16,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "telmate/proxmox"
-      version = "3.0.1-rc1"
+      version = "3.0.1-rc2"
     }
   }
 }
@@ -26,4 +26,13 @@ provider "proxmox" {
 
   pm_api_token_id     = var.proxmox_api_token_id
   pm_api_token_secret = var.proxmox_api_token_secret
+
+  pm_parallel = 10
+
+  pm_log_enable = true
+  pm_log_file   = "../.local-data/terraform-plugin-proxmox.log"
+  pm_log_levels = {
+    _default    = "debug"
+    _capturelog = ""
+  }
 }
