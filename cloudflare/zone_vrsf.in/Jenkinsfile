@@ -4,27 +4,21 @@ pipeline {
   }
 
   stages {
-    stage('Change directory') {
-      steps {
-        dir(path: 'cloudflare/zone_vrsf.in')
-      }
-    }
-
     stage('Terraform Init') {
       steps {
-        sh 'terraform init'
+        sh 'cd cloudflare/zone_vrsf.in && terraform init'
       }
     }
 
     stage('Terraform Plan') {
       steps {
-        sh 'terraform plan'
+        sh 'cd cloudflare/zone_vrsf.in && terraform plan'
       }
     }
 
     stage('Terraform Apply') {
       steps {
-        sh 'terraform apply -auto-approve'
+        sh 'cd cloudflare/zone_vrsf.in && terraform apply -auto-approve'
       }
     }
 
