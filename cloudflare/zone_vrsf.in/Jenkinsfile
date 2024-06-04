@@ -4,6 +4,12 @@ pipeline {
   }
 
   stages {
+    stage('Change directory') {
+      steps {
+        dir(path: 'cloudflare/zone_vrsf.in')
+      }
+    }
+
     stage('Terraform Init') {
       steps {
         sh 'terraform init'
