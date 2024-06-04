@@ -18,6 +18,11 @@ terraform {
       source  = "telmate/proxmox"
       version = "3.0.1-rc2"
     }
+
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 4.25"
+    }
   }
 }
 
@@ -35,4 +40,8 @@ provider "proxmox" {
     _default    = "debug"
     _capturelog = ""
   }
+}
+
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
 }

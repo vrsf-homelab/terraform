@@ -16,6 +16,8 @@ module "k8s_master_node" {
   disk_size = each.value.node.size
 
   ip = each.value.node.ip
+
+  cloudflare_account_id = var.cloudflare_account_id
 }
 
 module "k8s_worker_node" {
@@ -36,4 +38,6 @@ module "k8s_worker_node" {
   disk_size = each.value.node.size
 
   ip = each.value.node.ip
+
+  cloudflare_account_id = var.cloudflare_account_id
 }

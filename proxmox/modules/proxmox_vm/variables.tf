@@ -3,6 +3,11 @@ variable "name" {
   description = "Name of the VM"
 }
 
+variable "hostname" {
+  type    = string
+  default = null
+}
+
 variable "id" {
   type        = number
   description = "Proxmox VM ID"
@@ -37,4 +42,13 @@ variable "ip" {
 variable "disk_size" {
   type        = number
   description = "Size of the main disk (GB)"
+}
+
+variable "vm_template_name" {
+  type    = string
+  default = "debian12-cloudinit"
+}
+
+variable "cloudflare_account_id" {
+  type = string
 }

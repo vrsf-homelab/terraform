@@ -6,7 +6,7 @@ resource "proxmox_vm_qemu" "vm" {
 
   ## Target PVE
   target_node = var.pve_node
-  clone       = "debian12-cloudinit" # locals
+  clone       = var.vm_template_name
   full_clone  = true
 
   agent   = 1
@@ -47,13 +47,13 @@ resource "proxmox_vm_qemu" "vm" {
   }
 
   provisioner "remote-exec" {
-    inline = [
+    inline = var.hostname != null ? [
       "NEW_HOSTNAME=\"${local.hostname}\"",
       "echo \">> Setting hostname: $NEW_HOSTNAME\"",
       "sudo hostnamectl set-hostname $NEW_HOSTNAME",
       "sudo sed -i \"s/${self.name}/$NEW_HOSTNAME/g\" /etc/hosts",
       "sudo systemctl reboot"
-    ]
+    ] : ["echo >> Skipping hostname change"]
 
     connection {
       type        = "ssh"
@@ -70,7 +70,8 @@ resource "proxmox_vm_qemu" "vm" {
       sshkeys,
       network,
       disks,
-      smbios
+      smbios,
+      bootdisk
     ]
   }
 }
