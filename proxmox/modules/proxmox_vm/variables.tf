@@ -3,11 +3,6 @@ variable "name" {
   description = "Name of the VM"
 }
 
-variable "hostname" {
-  type    = string
-  default = null
-}
-
 variable "id" {
   type        = number
   description = "Proxmox VM ID"

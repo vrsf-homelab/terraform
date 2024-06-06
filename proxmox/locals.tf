@@ -7,16 +7,21 @@ locals {
     master = {
       crimson = [
         { ip = "10.69.35.100", memory = 8192, cores = 2, size = 50 },
-        # { ip = "10.69.35.101", memory = 8192, cores = 2, size = 50 },
+        { ip = "10.69.35.101", memory = 8192, cores = 2, size = 50 },
       ],
       emerald = [
-        # { ip = "10.69.35.102", memory = 8192, cores = 2, size = 50 },
+        { ip = "10.69.35.102", memory = 8192, cores = 2, size = 50 },
       ],
     },
     worker = {
       crimson = [
+        { ip = "10.69.35.150", memory = 4096, cores = 2, size = 50 },
+        { ip = "10.69.35.151", memory = 4096, cores = 2, size = 50 },
       ],
       emerald = [
+        { ip = "10.69.35.152", memory = 4096, cores = 1, size = 50 },
+        { ip = "10.69.35.153", memory = 4096, cores = 1, size = 50 },
+        { ip = "10.69.35.154", memory = 4096, cores = 1, size = 50 },
       ],
     }
   }

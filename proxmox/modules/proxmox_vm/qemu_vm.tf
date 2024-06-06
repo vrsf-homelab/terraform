@@ -47,13 +47,13 @@ resource "proxmox_vm_qemu" "vm" {
   }
 
   provisioner "remote-exec" {
-    inline = var.hostname != null ? [
+    inline = [
       "NEW_HOSTNAME=\"${local.hostname}\"",
       "echo \">> Setting hostname: $NEW_HOSTNAME\"",
       "sudo hostnamectl set-hostname $NEW_HOSTNAME",
       "sudo sed -i \"s/${self.name}/$NEW_HOSTNAME/g\" /etc/hosts",
       "sudo systemctl reboot"
-    ] : ["echo >> Skipping hostname change"]
+    ]
 
     connection {
       type        = "ssh"

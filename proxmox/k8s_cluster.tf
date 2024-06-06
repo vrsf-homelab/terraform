@@ -9,7 +9,8 @@ module "k8s_master_node" {
   name = "k3s-master-${each.key + 1}"
   tags = ["k3s_master"]
 
-  pve_node = each.value.pve
+  pve_node         = each.value.pve
+  vm_template_name = "ubuntu-noble-cloudinit"
 
   memory    = each.value.node.memory
   cores     = each.value.node.cores
@@ -31,7 +32,8 @@ module "k8s_worker_node" {
   name = "k3s-worker-${each.key + 1}"
   tags = ["k3s_worker"]
 
-  pve_node = each.value.pve
+  pve_node         = each.value.pve
+  vm_template_name = "ubuntu-noble-cloudinit"
 
   memory    = each.value.node.memory
   cores     = each.value.node.cores
