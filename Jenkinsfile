@@ -7,7 +7,7 @@ pipeline {
     choice(
       name: 'TF_ENVIRONMENT',
       description: 'Terraform environment directory',
-      choices: ['k8s-cluster', 'load-balancer', 'vault']
+      choices: ['proxmox/kubernetes', 'proxmox/load-balancer', 'vault', 'cloudflare']
     )
   }
 
@@ -42,7 +42,7 @@ pipeline {
 
     stage('Terraform Init') {
       steps {
-        sh 'make init-${TF_ENVIRONMENT}-state'
+        sh 'make init-${TF_ENVIRONMENT}'
       }
     }
 
