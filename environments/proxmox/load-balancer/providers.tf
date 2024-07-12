@@ -3,7 +3,7 @@ terraform {
 
   backend "s3" {
     bucket         = "vrs-factory-terraform"
-    key            = "state-proxmox.tfstate"
+    key            = "state-proxmox-lb.tfstate"
     region         = "eu-central-1"
     dynamodb_table = "vrs-factory-terraform"
 
@@ -35,7 +35,7 @@ provider "proxmox" {
   pm_parallel = 10
 
   pm_log_enable = true
-  pm_log_file   = "../.local-data/terraform-plugin-proxmox.log"
+  pm_log_file   = "../../../.local-data/terraform-plugin-proxmox.log"
   pm_log_levels = {
     _default    = "debug"
     _capturelog = ""

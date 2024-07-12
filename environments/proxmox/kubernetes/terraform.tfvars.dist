@@ -1,0 +1,8 @@
+aws_access_key =
+aws_secret_key =
+
+proxmox_api_token_id     =
+proxmox_api_token_secret =
+
+cloudflare_account_id =
+cloudflare_api_token  =

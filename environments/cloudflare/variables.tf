@@ -9,7 +9,6 @@ variable "aws_region" {
   type    = string
   default = "eu-central-1"
 }
-## /end
 
 variable "api_token" {
   type = string

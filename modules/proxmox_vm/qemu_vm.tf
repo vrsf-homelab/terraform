@@ -26,6 +26,7 @@ resource "proxmox_vm_qemu" "vm" {
   ## Storage
   scsihw   = "virtio-scsi-pci"
   bootdisk = "order=scsi0"
+
   disks {
     ide {
       ide2 {
@@ -35,12 +36,15 @@ resource "proxmox_vm_qemu" "vm" {
       }
     }
 
+    # Instead of resizing, it creates a new disk and detaching the previous one !!!
+    ## When it tries to connect to the VM, re-attach a proper disk manually
     scsi {
       scsi0 {
         disk {
           size       = var.disk_size
           storage    = "local-zfs"
           emulatessd = true
+          discard    = true
         }
       }
     }
@@ -71,7 +75,8 @@ resource "proxmox_vm_qemu" "vm" {
       network,
       disks,
       smbios,
-      bootdisk
+      bootdisk,
+      vm_state
     ]
   }
 }
