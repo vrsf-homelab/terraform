@@ -1,18 +1,9 @@
 locals {
-  ssh_key = <<EOF
-  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGzdJba7f4WcdeTdFX21ZX3NMAUCT+BWbRazr8GPjqWT pmg.farys@gmail.com
-  EOF
+  vm_template_name = "debian-12.6.0-20240727"
+  storage_name     = "local-zfs"
 
-  vm_nodes = {
-    crimson = "10.69.30.20",
-    emerald = "10.69.30.21"
-  }
-
-  vm_specs = {
-    name_prefix = "lb"
-    memory      = 1024,
-    cores       = 1,
-    size        = 5,
-    tags        = ["load_balancer"]
-  }
+  load_balancer_nodes = [
+    { node = "crimson", id = 3121, ip = "10.0.31.21", memory = 1024, cores = 1, size = 20 },
+    { node = "emerald", id = 3122, ip = "10.0.31.22", memory = 1024, cores = 1, size = 20 },
+  ]
 }

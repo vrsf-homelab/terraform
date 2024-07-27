@@ -21,6 +21,14 @@ init-proxmox-load-balancer: ## Inits Proxmox's "load-balancer" state
 	-backend-config="secret_key=$(AWS_SECRET_ACCESS_KEY)" \
 	-backend-config="key=state-proxmox-lb.tfstate"
 
+init-proxmox-core: ## Inits Proxmox's "core" state
+	@echo "Initializing 'Core' state ..."
+	@cd environments/proxmox/core && terraform init \
+	-reconfigure \
+	-backend-config="access_key=$(AWS_ACCESS_KEY_ID)" \
+	-backend-config="secret_key=$(AWS_SECRET_ACCESS_KEY)" \
+	-backend-config="key=state-proxmox-core.tfstate"
+
 init-cloudflare: ## Inits Cloudflare state
 	@echo "Initializing 'Cloudflare' state ..."
 	@cd environments/cloudflare && terraform init \

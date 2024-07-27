@@ -3,7 +3,7 @@ terraform {
 
   backend "s3" {
     bucket         = "vrs-factory-terraform"
-    key            = "state-proxmox-lb.tfstate"
+    key            = "state-proxmox-core.tfstate"
     region         = "eu-central-1"
     dynamodb_table = "vrs-factory-terraform"
 
@@ -15,7 +15,7 @@ terraform {
 
   required_providers {
     proxmox = {
-      source  = "Telmate/proxmox"
+      source  = "telmate/proxmox"
       version = "3.0.1-rc3"
     }
 

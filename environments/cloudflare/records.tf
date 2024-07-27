@@ -48,10 +48,20 @@ resource "cloudflare_record" "proxmox_emerald" {
 ###
 ##  H O M E L A B
 ###
+
+resource "cloudflare_record" "vault_cluster" {
+  zone_id = cloudflare_zone.default.id
+  name    = "vlt"
+  value   = "10.0.30.10"
+  type    = "A"
+  proxied = false
+  comment = local.comment
+}
+
 resource "cloudflare_record" "kubernetes_cluster" {
   zone_id = cloudflare_zone.default.id
   name    = "k8s"
-  value   = "10.0.30.10"
+  value   = "10.0.30.20"
   type    = "A"
   proxied = false
   comment = local.comment
@@ -60,16 +70,7 @@ resource "cloudflare_record" "kubernetes_cluster" {
 resource "cloudflare_record" "kubernetes_ingress" {
   zone_id = cloudflare_zone.default.id
   name    = "*"
-  value   = "10.0.31.10"
-  type    = "A"
-  proxied = false
-  comment = local.comment
-}
-
-resource "cloudflare_record" "vault_cluster" {
-  zone_id = cloudflare_zone.default.id
-  name    = "vlt"
-  value   = "10.0.30.11"
+  value   = "10.0.30.21"
   type    = "A"
   proxied = false
   comment = local.comment
