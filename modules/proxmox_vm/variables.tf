@@ -39,6 +39,11 @@ variable "disk_size" {
   description = "Size of the main disk (GB)"
 }
 
+variable "storage_name" {
+  type        = string
+  description = "Name of the PVE storage, e.g. 'local-lvm'"
+}
+
 variable "vm_template_name" {
   type    = string
   default = "debian12-cloudinit"

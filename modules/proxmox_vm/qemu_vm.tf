@@ -10,8 +10,8 @@ resource "proxmox_vm_qemu" "vm" {
   full_clone  = true
 
   agent   = 1
-  os_type = "cloud-init"
-  bios    = "ovmf"
+  os_type = "l26"
+  bios    = "seabios"
 
   ## Memory
   memory = var.memory
@@ -21,30 +21,27 @@ resource "proxmox_vm_qemu" "vm" {
   cpu   = "host"
 
   ## Network
-  ipconfig0 = "ip=${var.ip}/16,gw=10.69.0.1"
+  ipconfig0 = var.ip
 
   ## Storage
-  scsihw   = "virtio-scsi-pci"
+  scsihw   = "virtio-scsi-single"
   bootdisk = "order=scsi0"
 
   disks {
     ide {
-      ide2 {
+      ide0 {
         cloudinit {
-          storage = "local-zfs"
+          storage = var.storage_name
         }
       }
     }
 
-    # Instead of resizing, it creates a new disk and detaching the previous one !!!
-    ## When it tries to connect to the VM, re-attach a proper disk manually
     scsi {
       scsi0 {
         disk {
-          size       = var.disk_size
-          storage    = "local-zfs"
-          emulatessd = true
-          discard    = true
+          size     = var.disk_size
+          storage  = var.storage_name
+          iothread = true
         }
       }
     }
@@ -53,18 +50,17 @@ resource "proxmox_vm_qemu" "vm" {
   provisioner "remote-exec" {
     inline = [
       "NEW_HOSTNAME=\"${local.hostname}\"",
-      "echo \">> Setting hostname: $NEW_HOSTNAME\"",
+      "echo \">> Setting hostname: '$NEW_HOSTNAME' ...\"",
       "sudo hostnamectl set-hostname $NEW_HOSTNAME",
-      "sudo sed -i \"s/${self.name}/$NEW_HOSTNAME/g\" /etc/hosts",
-      "sudo systemctl reboot"
+      "sudo sed -i \"s/${self.name}/$NEW_HOSTNAME/g\" /etc/hosts 2>/dev/null", # Ignore error about 'unresolved host'
     ]
 
     connection {
-      type        = "ssh"
-      host        = self.ssh_host
-      private_key = self.ssh_private_key
-      user        = "srvadm"
-      port        = self.ssh_port
+      type  = "ssh"
+      host  = self.ssh_host
+      port  = self.ssh_port
+      user  = "vertisan"
+      agent = true
     }
   }
 
@@ -76,7 +72,8 @@ resource "proxmox_vm_qemu" "vm" {
       disks,
       smbios,
       bootdisk,
-      vm_state
+      vm_state,
+      desc
     ]
   }
 }

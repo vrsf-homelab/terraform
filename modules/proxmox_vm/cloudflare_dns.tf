@@ -8,7 +8,7 @@ resource "cloudflare_record" "vm_dns_record" {
 
   zone_id = data.cloudflare_zone.vrsf_in.id
   name    = "${var.name}.vm"
-  value   = var.ip
+  value   = local.ip
   type    = "A"
   proxied = false
   comment = "Managed by Proxmox provisioner"
