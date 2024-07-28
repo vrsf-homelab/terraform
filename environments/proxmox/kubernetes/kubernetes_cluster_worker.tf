@@ -7,7 +7,7 @@ module "k8s_worker_node" {
 
   id   = each.value.id
   name = "k3s-worker-${each.key + 1}"
-  tags = ["k3s_worker"]
+  tags = ["k3s", "k3s_worker"]
 
   pve_node         = each.value.node
   vm_template_name = local.vm_template_name
