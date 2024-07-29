@@ -1,15 +1,15 @@
-module "k8s_master_node" {
+module "k8s_cluster_cp" {
   source = "../../../modules/proxmox_vm"
 
   for_each = {
-    for index, value in local.k8s_cluster.master : index => value
+    for index, value in local.k8s_cluster.control_plane.vms : index => value
   }
 
   id   = each.value.id
-  name = "k3s-master-${each.key + 1}"
-  tags = ["k3s", "k3s_master"]
+  name = "${local.k8s_cluster.control_plane.name_prefix}-${each.key + 1}"
+  tags = local.k8s_cluster.control_plane.tags
 
-  pve_node         = each.value.node
+  pve_node         = each.value.pve
   vm_template_name = local.vm_template_name
 
   memory       = each.value.memory
