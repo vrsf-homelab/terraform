@@ -1,22 +1,23 @@
-# VRS-Factory Terraform
+# VRS-Factory Homelab Terraform
 
-## Init
+## Proxmox role
 
-1. Prepare `.env` file.
-2. Run `make init-backend`.
+Run on destination PVE node (or just on one if you have a cluster)
 
-## Resources
+```shell
+PVE_ROLE_NAME=Terraform
+PVE_USERNAME=terraform
+PVE_TOKEN_NAME=terraform
 
-### AWS
+# Create role with a required permissions
+pveum role add $PVE_ROLE_NAME -privs "Datastore.AllocateSpace Datastore.Audit Pool.Allocate Sys.Audit Sys.Console Sys.Modify VM.Allocate VM.Audit VM.Clone VM.Config.CDROM VM.Config.Cloudinit VM.Config.CPU VM.Config.Disk VM.Config.HWType VM.Config.Memory VM.Config.Network VM.Config.Options VM.Migrate VM.Monitor VM.PowerMgmt SDN.Use"
 
-#### IAM
+# Create user
+pveum user add $PVE_USERNAME@pve
 
-- GitHub Role (IMPORT)
-- Extra users
+# Assign created role for user
+pveum aclmod / -user $PVE_USERNAME@pve -role $PVE_ROLE_NAME
 
-### Cloudflare
-
-#### Zones
-
-- vrs-factory.dev
-- vrs-factory.pl
+# Create a token for user
+pveum user token add $PVE_USERNAME@pve $PVE_TOKEN_NAME --privsep 0
+```

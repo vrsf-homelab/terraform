@@ -26,18 +26,18 @@ resource "cloudflare_record" "adguard_panel" {
 ###
 ##  P R O X M O X
 ###
-resource "cloudflare_record" "proxmox_crimson" {
+resource "cloudflare_record" "proxmox_alpha" {
   zone_id = cloudflare_zone.default.id
-  name    = "crimson.pve"
+  name    = "alpha.pve"
   value   = "10.0.20.31"
   type    = "A"
   proxied = false
   comment = local.comment
 }
 
-resource "cloudflare_record" "proxmox_emerald" {
+resource "cloudflare_record" "proxmox_beta" {
   zone_id = cloudflare_zone.default.id
-  name    = "emerald.pve"
+  name    = "beta.pve"
   value   = "10.0.20.32"
   type    = "A"
   proxied = false
