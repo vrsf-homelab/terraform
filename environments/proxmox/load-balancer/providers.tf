@@ -1,16 +1,9 @@
 terraform {
   required_version = ">= 1.6"
 
-  backend "s3" {
-    bucket         = "vrs-factory-terraform"
-    key            = "state-proxmox-lb.tfstate"
-    region         = "eu-central-1"
-    dynamodb_table = "vrs-factory-terraform"
-
-    encrypt                 = true
-    access_key              = var.aws_access_key
-    secret_key              = var.aws_secret_key
-    skip_metadata_api_check = true
+  backend "gcs" {
+    bucket = "vrsf-homelab-terraform"
+    prefix = "proxmox/load-balancer"
   }
 
   required_providers {
