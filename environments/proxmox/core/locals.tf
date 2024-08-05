@@ -4,6 +4,7 @@ locals {
 
   load_balancer_nodes = [
     { node = "alpha", id = 3111, ip = "10.0.31.11", memory = 4096, cores = 1, size = 50 },
-    { node = "beta", id = 3112, ip = "10.0.31.12", memory = 4096, cores = 1, size = 50 },
+    { node = "beta", id = 3112, ip = "10.0.31.12", memory = 2048, cores = 1, size = 50 },
+    { node = "beta", id = 3113, ip = "10.0.31.13", memory = 2048, cores = 1, size = 50 },
   ]
 }
