@@ -1,5 +1,5 @@
 resource "vault_policy" "admin" {
-  name   = "admin_policy"
+  name   = "admin"
   policy = data.vault_policy_document.admin.hcl
 }
 
@@ -7,55 +7,55 @@ data "vault_policy_document" "admin" {
   rule {
     path         = "+/metadata/*"
     capabilities = ["read", "list"]
-    description  = "allow listing secrets and metadata"
+    description  = "Allow listing secrets and metadata."
   }
 
   rule {
     path         = "+/subkeys/*"
     capabilities = ["read"]
-    description  = "allow reading of subkeys"
+    description  = "Allow reading of subkeys."
   }
 
   rule {
     path         = "auth/+/config/*"
     capabilities = ["read", "update", "delete", "list"]
-    description  = "Allow managing Auth method configurations"
+    description  = "Allow managing Auth method configurations."
   }
 
   rule {
     path         = "auth/+/role"
     capabilities = ["list"]
-    description  = "Allow listing of roles"
+    description  = "Allow listing of roles."
   }
 
   rule {
     path         = "auth/+/roles"
     capabilities = ["list"]
-    description  = "Allow listing of roles"
+    description  = "Allow listing of roles."
   }
 
   rule {
     path         = "auth/+/role/+"
     capabilities = ["create", "read", "update", "delete"]
-    description  = "Allow managing of roles"
+    description  = "Allow managing of roles."
   }
 
   rule {
     path         = "auth/+/role/+/tag"
     capabilities = ["update"]
-    description  = "Manage AWS role tags"
+    description  = "Manage AWS role tags."
   }
 
   rule {
     path         = "auth/+/roletag-denylist/*"
     capabilities = ["create", "read", "update", "delete", "list"]
-    description  = "Manage AWS roletag denylists"
+    description  = "Manage AWS roletag denylists."
   }
 
   rule {
     path         = "auth/+/tidy/roletag-denylist"
     capabilities = ["update"]
-    description  = "Tidy AWS roletag denylists"
+    description  = "Tidy AWS roletag denylists."
   }
 
   rule {
