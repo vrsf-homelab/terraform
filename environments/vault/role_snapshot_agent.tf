@@ -1,4 +1,3 @@
-# # `vault auth enable approle`
 resource "vault_approle_auth_backend_role" "snapshot_agent" {
   role_name      = "snapshot-agent"
   backend        = vault_auth_backend.approle.path
