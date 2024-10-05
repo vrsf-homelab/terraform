@@ -49,15 +49,6 @@ resource "cloudflare_record" "proxmox_beta" {
 ##  H O M E L A B
 ###
 
-resource "cloudflare_record" "vault_cluster" {
-  zone_id = cloudflare_zone.default.id
-  name    = "vlt"
-  value   = "10.0.30.10"
-  type    = "A"
-  proxied = false
-  comment = local.comment
-}
-
 resource "cloudflare_record" "kubernetes_cluster" {
   zone_id = cloudflare_zone.default.id
   name    = "k8s"
@@ -71,6 +62,17 @@ resource "cloudflare_record" "kubernetes_ingress" {
   zone_id = cloudflare_zone.default.id
   name    = "*"
   value   = "10.0.30.21"
+  type    = "A"
+  proxied = false
+  comment = local.comment
+}
+
+resource "cloudflare_record" "vault_node" {
+  count = 3
+
+  zone_id = cloudflare_zone.default.id
+  name    = "n${count.index + 1}.vlt"
+  value   = "10.0.31.1${count.index + 1}"
   type    = "A"
   proxied = false
   comment = local.comment
