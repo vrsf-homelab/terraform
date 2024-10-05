@@ -6,3 +6,8 @@ variable "vault_address" {
 variable "vault_token" {
   type = string
 }
+
+#### LDAP ####
+variable "ldap_bind_dn_pass" {
+  type = string
+}

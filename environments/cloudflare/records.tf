@@ -97,3 +97,12 @@ resource "cloudflare_record" "synology_plex" {
   proxied = false
   comment = local.comment
 }
+
+resource "cloudflare_record" "synology_ldap" {
+  zone_id = cloudflare_zone.default.id
+  name    = "ldap"
+  value   = "10.0.20.30"
+  type    = "A"
+  proxied = false
+  comment = local.comment
+}
