@@ -26,5 +26,5 @@ resource "vault_ldap_auth_backend_group" "vault" {
 resource "vault_ldap_auth_backend_user" "vertisan" {
   backend  = vault_ldap_auth_backend.ldap.path
   username = "vertisan"
-  policies = [vault_policy.admin.name]
+  policies = [vault_policy.head_admin.name]
 }
