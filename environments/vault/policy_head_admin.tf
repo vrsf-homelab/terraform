@@ -6,6 +6,6 @@ resource "vault_policy" "head_admin" {
 data "vault_policy_document" "head_admin" {
   rule {
     path         = "*"
-    capabilities = ["create", "read", "list", "update", "delete"]
+    capabilities = ["sudo", "create", "read", "list", "update", "delete", "patch"]
   }
 }
