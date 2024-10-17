@@ -78,6 +78,15 @@ resource "cloudflare_record" "vault_node" {
   comment = local.comment
 }
 
+resource "cloudflare_record" "gitlab" {
+  zone_id = cloudflare_zone.default.id
+  name    = "gitlab"
+  value   = "10.0.31.101"
+  type    = "A"
+  proxied = false
+  comment = local.comment
+}
+
 
 ###
 ##  S Y N O L O G Y
