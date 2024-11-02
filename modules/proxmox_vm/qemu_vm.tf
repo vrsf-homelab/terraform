@@ -8,6 +8,7 @@ resource "proxmox_vm_qemu" "vm" {
   target_node = var.pve_node
   clone       = var.vm_template_name
   full_clone  = true
+  onboot      = var.on_boot
 
   agent   = 1
   os_type = "l26"

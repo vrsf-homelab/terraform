@@ -1,14 +1,13 @@
-module "core_vm" {
+module "home_assitant_vm" {
   source = "../../../modules/proxmox_vm"
 
   for_each = {
-    for index, value in local.load_balancer_nodes : index => value
+    for index, value in local.home_assistant_nodes : index => value
   }
 
-  id      = each.value.id
-  name    = "core-${each.key + 1}"
-  on_boot = true
-  tags    = ["core", "vault"]
+  id   = each.value.id
+  name = "home-assistant-${each.key + 1}"
+  tags = ["core", "home_assistant"]
 
   pve_node         = each.value.node
   vm_template_name = local.vm_template_name

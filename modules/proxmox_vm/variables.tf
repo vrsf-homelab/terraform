@@ -8,6 +8,11 @@ variable "id" {
   description = "Proxmox VM ID"
 }
 
+variable "on_boot" {
+  type    = bool
+  default = false
+}
+
 variable "tags" {
   type        = set(string)
   description = "Tags attached to the VM"
