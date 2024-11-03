@@ -22,4 +22,9 @@ locals {
   #   # TODO: Move to 'tango'
   #   { node = "beta", id = 3132, ip = "10.0.31.32", memory = 2048, cores = 1, size = 100 },
   # ]
+
+  jellyfin_nodes = [
+    # TODO: Move to 'tango'
+    { node = "beta", id = 3133, ip = "10.0.31.33", memory = 3072, cores = 2, size = 100 },
+  ]
 }
