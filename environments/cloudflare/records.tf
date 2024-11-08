@@ -44,6 +44,23 @@ resource "cloudflare_record" "proxmox_beta" {
   comment = local.comment
 }
 
+resource "cloudflare_record" "proxmox_charlie" {
+  zone_id = cloudflare_zone.default.id
+  name    = "charlie.pve"
+  value   = "10.0.20.33"
+  type    = "A"
+  proxied = false
+  comment = local.comment
+}
+
+resource "cloudflare_record" "proxmox_tango" {
+  zone_id = cloudflare_zone.default.id
+  name    = "tango.pve"
+  value   = "10.0.20.34"
+  type    = "A"
+  proxied = false
+  comment = local.comment
+}
 
 ###
 ##  H O M E L A B
