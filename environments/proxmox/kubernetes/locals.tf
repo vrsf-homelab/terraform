@@ -8,7 +8,7 @@ locals {
       tags        = ["k3s", "k3s_server"]
       vms = [
         { pve = "alpha", id = 3151, ip = "10.0.31.51", memory = 4096, cores = 1, size = 50 },
-        { pve = "beta", id = 3152, ip = "10.0.31.52", memory = 4096, cores = 1, size = 50 },
+        { pve = "alpha", id = 3152, ip = "10.0.31.52", memory = 4096, cores = 1, size = 50 },
         { pve = "beta", id = 3153, ip = "10.0.31.53", memory = 4096, cores = 1, size = 50 }, # charlie on 3rd node
       ]
     },
