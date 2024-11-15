@@ -3,7 +3,7 @@
 
 provider "registry.terraform.io/grafana/grafana" {
   version     = "3.13.1"
-  constraints = "~> 3.10, ~> 3.13"
+  constraints = "~> 3.13"
   hashes = [
     "h1:nB8HNTFiA1biV8JJgritppJfza390WxNV9eM1QuwPfI=",
     "zh:0a62d198c8b3bbc6beb856b30cdfdeb45f93cd3266e869a8b624c17432240fa2",

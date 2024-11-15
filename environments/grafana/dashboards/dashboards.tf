@@ -12,7 +12,7 @@ resource "grafana_dashboard" "default" {
 ##  A R G O  C D
 ###
 module "argo_cd" {
-  source = "./modules/dashboards_stack"
+  source = "../modules/dashboard"
 
   name = local.dashboards.argo_cd.name
   uid  = local.dashboards.argo_cd.uid
@@ -25,7 +25,7 @@ module "argo_cd" {
 ##  K U B E R N E T E S
 ###
 module "kubernetes" {
-  source = "./modules/dashboards_stack"
+  source = "../modules/dashboard"
 
   name = local.dashboards.kubernetes.name
   uid  = local.dashboards.kubernetes.uid
@@ -38,7 +38,7 @@ module "kubernetes" {
 ##  I N G R E S S   C O N T R O L L E R
 ###
 module "ingress_controller" {
-  source = "./modules/dashboards_stack"
+  source = "../modules/dashboard"
 
   name = local.dashboards.ingress_controller.name
   uid  = local.dashboards.ingress_controller.uid
@@ -50,11 +50,11 @@ module "ingress_controller" {
 ###
 ##  I S T I O
 ###
-module "istio" {
-  source = "./modules/dashboards_stack"
+# module "istio" {
+#   source = "../modules/dashboard"
 
-  name = local.dashboards.istio.name
-  uid  = local.dashboards.istio.uid
+#   name = local.dashboards.istio.name
+#   uid  = local.dashboards.istio.uid
 
-  dashboards = local.dashboards.istio.items
-}
+#   dashboards = local.dashboards.istio.items
+# }

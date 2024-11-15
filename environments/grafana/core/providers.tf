@@ -3,7 +3,7 @@ terraform {
 
   backend "gcs" {
     bucket = "vrsf-homelab-terraform"
-    prefix = "grafana/dashboard"
+    prefix = "grafana/core"
   }
 
   required_providers {
